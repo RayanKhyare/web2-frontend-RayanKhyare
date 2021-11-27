@@ -1,0 +1,715 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+
+
+    background-color: #161616;
+
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/** HEADER **/
+
+.logo a {
+
+    height: 25%;
+    display: flex;
+    align-items: center;
+    color: var(--jet);
+    transition: 0.2s ease-in;
+    text-decoration: none;
+
+    border-radius: 10px;
+}
+
+nav span {
+    color: #e4443e;
+}
+
+header {
+    color: white;
+    width: 100%;
+    height: 130px;
+    font-size: 1em;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 550px;
+    text-decoration: none;
+
+}
+
+nav li {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav li:hover {
+
+    border-bottom: rgb(226, 32, 32) 2px solid;
+}
+
+nav {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul a {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    text-decoration: none;
+    font-size: 2em;
+    color: white;
+}
+
+
+header p {
+    position: absolute;
+    left: 2.5%;
+    font-weight: 500;
+    font-size: 40px;
+    padding-left: 70px;
+}
+
+header nav img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#searchinput {
+    padding: 10px;
+    width: 350px;
+    border: none;
+    margin-left: 250px;
+    font-size: 17px;
+}
+
+.active {
+    border-bottom: rgb(226, 32, 32) 2px solid;
+}
+
+
+/** Main **/
+
+.mainFlex {
+    display: flex;
+}
+
+#textStart {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#textStart p {
+    align-items: center;
+    padding-left: 115px;
+    padding-top: 40px;
+    color: white;
+    font-weight: 800;
+    width: 75%;
+    font-size: 5em;
+}
+
+
+#textStart li {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.8em;
+    color: white;
+    padding-top: 25px;
+
+}
+
+#textStart ul {
+    padding-left: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-decoration: none;
+}
+
+.mainUl {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+
+
+#textStart a {
+    height: 25%;
+    display: flex;
+    align-items: center;
+    color: var(--jet);
+
+    text-decoration: none;
+
+    padding: 20px 100px;
+    border: 1px solid #ff0808;
+    border-radius: 30px;
+}
+
+.signUpColor {
+    background-color: #e4443e00;
+    border: 1px solid red;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.signUpColor:hover {
+    background-color: #e0534f;
+    opacity: 1;
+}
+
+
+.signInColor {
+    background-color: #861915;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.signInColor:hover {
+    background-color: #d4423d;
+    opacity: 1;
+}
+
+#fillerTextStart {
+    padding-right: 25px;
+    width: 50%;
+    height: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    padding-left: 100px;
+
+
+}
+
+
+
+#fillerTextStart::after {
+    background-color: rgb(29, 29, 29);
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    z-index: -1;
+
+}
+
+
+#fillerTextStart img {
+    filter: brightness(0.7);
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    padding-top: 50px;
+}
+
+#fillerTextStart p:first-of-type {
+    font-size: 3.3em;
+    font-weight: bold;
+    width: 50%;
+    padding-top: 15px;
+    line-height: 1.2em;
+}
+
+.fillerText {
+    font-size: 1.2em;
+    width: 65%;
+    padding-top: 15px;
+
+}
+
+/** Signup page **/
+
+
+.signUp {
+    padding-top: 50px;
+    padding-left: 110px;
+    color: white;
+    width: 50%
+}
+
+#signupForm {
+    padding-top: 50px;
+}
+
+.signUp h2 {
+    font-size: 3em;
+    color: white;
+}
+
+.namesForm {
+    color: white;
+    display: flex;
+    justify-content: left;
+    width: 68%;
+
+}
+
+.firstnameForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.lastnameForm {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    width: 50%;
+
+}
+
+.emailForm {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    width: 68%;
+}
+
+.passwordForm {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 68%;
+    padding-top: 25px;
+}
+
+input[type=text] {
+
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: #e4443e42;
+    width: 68%;
+    border: red 1px solid;
+    border-radius: 15px;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    margin-top: 50px;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-size: 1.3em;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+input[type=submit]:hover {
+    background-color: #e4443e;
+}
+
+
+.already {
+    padding-top: 15px;
+}
+
+.signInbtn {
+    color: #e4443e;
+    text-decoration: none;
+}
+
+/** Signin page **/
+
+.emailFormsignIn {
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+    width: 68%;
+}
+
+.signIn {
+    padding-top: 60px;
+    padding-left: 110px;
+    color: white;
+    width: 50%
+}
+
+#signInForm {
+    padding-top: 25px;
+}
+
+.signIn h2 {
+    font-size: 3em;
+    color: white;
+    padding-top: 50px;
+}
+
+.signUpbtn {
+    color: #e4443e;
+    text-decoration: none;
+}
+
+.passwordFormsignIn {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 68%;
+    padding-top: 25px;
+}
+
+/** Homepage **/
+
+.container {
+    margin: 0 100px;
+
+}
+
+.welcome {
+    color: white;
+    font-size: 1.8em;
+
+}
+
+.seemore_a {
+    text-decoration: none;
+    color: white;
+}
+
+.bigcontainer {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: rgb(37, 39, 39);
+    margin-top: 50px;
+    padding: 25px 50px;
+
+
+}
+
+.headerbigcontainer {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    height: 75px;
+}
+
+.bodybigcontainer {
+    height: calc(100% - 75px);
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+
+}
+
+
+
+
+.gamesection {
+    height: 500px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+}
+
+.gamesection:last-child {
+    margin-right: 0;
+}
+
+.gamesection img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+    filter: brightness(80%);
+
+}
+
+.gametext {
+    background-color: #202020;
+    border-radius: 0px 0px 15px 15px;
+    width: 450px;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
+}
+
+.gametitle {
+    font-size: 1.5em;
+    padding-left: 10px;
+}
+
+.gamerelease {
+    color: rgb(201, 200, 200);
+    padding-left: 10px;
+}
+
+
+/* width */
+.bodybigcontainer::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.bodybigcontainer::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+/* Handle */
+.bodybigcontainer::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.bodybigcontainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/** All games **/
+
+.allgamesh2 {
+    color: white;
+    padding-top: 50px;
+    font-size: 2em;
+}
+
+.allgamescontainer {
+    background-color: rgba(20, 20, 20, 0.74);
+    flex-wrap: wrap;
+    width: 100%;
+    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    margin-top: 50px;
+    padding: 25px 50px;
+
+}
+
+.allgamesection {
+    height: 400px;
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+}
+
+.allgamesection:last-child {
+    margin-right: 0;
+}
+
+.allgamesection img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+    filter: brightness(80%);
+
+}
+
+.allgametext {
+    background-color: #202020;
+    border-radius: 0px 0px 15px 15px;
+    width: 370px;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
+}
+
+.allgametitle {
+    font-size: 1.3em;
+    padding-left: 15px;
+}
+
+.allgamerelease {
+    color: rgb(201, 200, 200);
+    padding-left: 15px;
+}
+
+/** Gameinfo **/
+
+.bigcontainergame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: rgb(37, 39, 39);
+    margin-top: 50px;
+    padding: 35px 0px 50px 75px;
+}
+
+.bodycontainergame {
+    display: flex;
+}
+
+.leftsidegameinfo {
+    width: 50%
+}
+
+.gameheader {}
+
+.nameandscore {
+    display: flex;
+    align-items: center;
+}
+
+.metascore {
+    color: white;
+    font-size: 2.3em;
+    margin-left: 25px;
+    padding: 5px 10px;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.gamename {
+    color: white;
+    font-size: 4em;
+    font-weight: 900;
+}
+
+.gamestudio {
+
+    color: rgb(184, 184, 184);
+}
+
+.about {
+    color: white;
+    font-size: 2.5em;
+}
+
+.gameinfo {
+    width: 100%;
+    color: white;
+}
+
+.releasedate_h2 {
+    color: white;
+    font-size: 2em;
+    padding-top: 20px;
+}
+
+.releasedate_h3 {
+    color: white;
+    font-size: 1.2em;
+    font-weight: 200;
+}
+
+.release_platforms {
+    display: flex;
+}
+
+.platforms_div {
+    padding-left: 75px;
+}
+
+.pictures_h2 {
+    color: white;
+    font-size: 2em;
+    padding-top: 20px;
+}
+
+.pictures_gameinfo {
+    display: flex;
+    overflow: scroll;
+}
+
+.pictures_gameinfo img {
+    padding-top: 20px;
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    padding-left: 25px;
+}
+
+.rightsidegameinfo img {
+
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    margin-left: 25px;
+
+    border-radius: 10px;
+}
