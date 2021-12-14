@@ -51,6 +51,7 @@ window.onload = function () {
     fetchGotm().then(game => {
         console.log(game);
 
+        let gameResult = game.results
 
         gameResult.forEach(game => {
             console.log(game);
@@ -62,14 +63,13 @@ window.onload = function () {
 
             let container = document.getElementById("novembergotm");
             let htmlString = "";
-            
+
             htmlString += `   <div class="gamesection">
        <img src="${gameImg}" alt="Avatar" style="width:100%">
 
        <div class="gametext">
             <p class="gametitle"><b>${gameName}</b></p>
              <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
-
        </div>
 
     </div>`
