@@ -6,7 +6,6 @@ window.onload = function () {
 
     const apiKey = '1f10bd3195bf40e7b89a3c607aefcdef'
 
-
     function callRegister() {
 
         document.getElementById("form").addEventListener("submit", e => {
@@ -52,7 +51,6 @@ window.onload = function () {
     fetchGotm().then(game => {
         console.log(game);
 
-        let gameResult = game.results
 
         gameResult.forEach(game => {
             console.log(game);
@@ -62,22 +60,19 @@ window.onload = function () {
             let gameMetacritic = game.metacritic;
             let gameRelease = game.released;
 
-
             let container = document.getElementById("novembergotm");
-            let htmlString = ""
-
-
-
+            let htmlString = "";
+            
             htmlString += `   <div class="gamesection">
-            <img src="${gameImg}" alt="Avatar" style="width:100%">
+       <img src="${gameImg}" alt="Avatar" style="width:100%">
 
-            <div class="gametext">
-                <p class="gametitle"><b>${gameName}</b></p>
-                <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
+       <div class="gametext">
+            <p class="gametitle"><b>${gameName}</b></p>
+             <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
 
-            </div>
+       </div>
 
-        </div>`
+    </div>`
             container.insertAdjacentHTML("beforeend", htmlString);
         });
     })
@@ -101,11 +96,8 @@ window.onload = function () {
             let gameMetacritic = game.metacritic;
             let gameRelease = game.released;
 
-
             let container = document.getElementById("populargames");
             let htmlString = ""
-
-
 
             htmlString += `   <div class="gamesection">
             <img src="${gameImg}" alt="Avatar" style="width:100%">
@@ -180,7 +172,7 @@ window.onload = function () {
 
 
 
-            htmlString += `    <div class="allgamesection">
+            htmlString += `<div class="allgamesection">
             <img src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
