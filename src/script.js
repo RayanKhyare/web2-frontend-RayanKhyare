@@ -30,6 +30,76 @@ window.onload = function () {
     //     })
     // })
 
+    function postBookmarkedGame() {
+
+
+        const buttons = document.getElementsByClassName("bookmark")
+        let buttonsArray = Array.from(buttons);
+
+        console.log(buttonsArray);
+
+        let userId = 5;
+        let gameId = document.getElementsByClassName("title").id;
+        let gameImg = document.getElementsByClassName("img").src;
+        let gameName = document.getElementsByClassName("title").value;
+        let gameRelease = document.getElementsByClassName("allgamerelease");
+
+        buttonsArray.forEach(button => {
+            button.addEventListener("click", function (e) {
+                fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                        gameId: gameId,
+                        gameImg: gameImg,
+                        gameName: gameName,
+                        gameRelease: gameRelease
+                    })
+                }).then(data => {
+                    return data.json()
+                })
+            })
+        })
+    }
+
+    setTimeout(postBookmarkedGame, 200)
+
+    function getBookmarkedGames() {
+
+        let container = document.getElementById("bookmarkedcontainer");
+
+        let htmlString = ""
+
+        fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
+                method: 'GET'
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+
+                for (let i = 0; i < data.length; i++) {
+                    htmlString = `
+                    <div class="allgamesection" id="${data[i].gameId}">
+                    <img class="img" src="${data[i].gameImg}" alt="Avatar" style="width:100%">
+
+                    <div class="allgametext">
+                        <p class="allgametitle"><b>${data[i].gameName}</b></p>
+                        <p><b class="allgamerelease">Release date : ${data[i].gameRelease}</b></p>
+
+                    </div>
+
+                </div>
+                   `
+                    container.insertAdjacentHTML("beforeend", htmlString)
+                }
+            })
+    }
+    getBookmarkedGames()
+
     function searchGame() {
         const searchGames = document.getElementById("searchinput")
         console.log(searchGames)
@@ -58,13 +128,12 @@ window.onload = function () {
 
                     let container = document.getElementById("allgamescontainer");
 
-
                     htmlString += `
                     <div class="allgamesection">
-            <img src="${gameImg}" alt="Avatar" style="width:100%">
+            <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b id="${game.id}">${gameName}</b></p>
+                <p class="allgametitle"><b class="title" id="${game.id}">${gameName}</b></p>
                 <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
 
             </div>
@@ -81,8 +150,27 @@ window.onload = function () {
 
     searchGame()
 
+    function moreInfoPage() {
+        const games = document.getElementsByClassName("game");
+        let gamesArray = [].slice.call(games);
+
+        gamesArray.forEach(game => {
+            game.addEventListener("click", function (e) {
+                e.preventDefault()
+
+                let gameId = game.id
+
+                sessionStorage.setItem("id", id)
+
+                window.location.href = "./moreinfo.html"
+
+
+            })
+        })
+    }
+
     async function fetchMoreInfo() {
-        const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&metacritic=75,100&dates=2021-11-01,2021-12-01`);
+        const response = await fetch(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
         const movies = await response.json();
         return movies;
     }
@@ -99,7 +187,7 @@ window.onload = function () {
             let container = document.getElementById("bigcontainergame");
             let htmlString = "";
 
-            htmlString += `   <div class="bodycontainergame" id="${game.id}">
+            htmlString += `   <div class="bodycontainergame">
             <div class="leftsidegameinfo">
                 <div class="gameheader">
                     <div class="nameandscore">
@@ -165,10 +253,10 @@ window.onload = function () {
             let htmlString = "";
 
             htmlString += `   <div class="gamesection">
-       <img src="${gameImg}" alt="Avatar" style="width:100%">
+       <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
        <div class="gametext">
-            <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
+            <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
              <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
        </div>
 
@@ -195,10 +283,10 @@ window.onload = function () {
             let htmlString = ""
 
             htmlString += `   <div class="gamesection">
-            <img src="${gameImg}" alt="Avatar" style="width:100%">
+            <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="gametext">
-                <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
+                <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
                 <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
 
             </div>
@@ -229,10 +317,10 @@ window.onload = function () {
             let htmlString = ""
 
             htmlString += `<div class="gamesection">
-            <img src="${gameImg}" alt="Avatar" style="width:100%">
+            <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
      
             <div class="gametext">
-                 <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
+                 <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
                   <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
             </div>
      
@@ -242,6 +330,8 @@ window.onload = function () {
     })
 
     fetchAllGames().then(game => {
+
+
         let gameResult = game.results
 
         gameResult.forEach(game => {
@@ -255,10 +345,10 @@ window.onload = function () {
             let htmlString = ""
 
             htmlString += `<div class="allgamesection">
-            <img src="${gameImg}" alt="Avatar" style="width:100%">
+            <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b id="${game.id}">${gameName}</b><i class="material-icons delete">bookmark_border</i></p>
+                <p class="allgametitle"><b class="title" id="${game.id}">${gameName}</b><i class="material-icons bookmark">bookmark_border</i></p>
                 <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
 
             </div>
