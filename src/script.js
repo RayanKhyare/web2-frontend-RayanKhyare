@@ -64,7 +64,7 @@ window.onload = function () {
             <img src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b>${gameName}</b></p>
+                <p class="allgametitle"><b id="${game.id}">${gameName}</b></p>
                 <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
 
             </div>
@@ -99,7 +99,7 @@ window.onload = function () {
             let container = document.getElementById("bigcontainergame");
             let htmlString = "";
 
-            htmlString += `   <div class="bodycontainergame">
+            htmlString += `   <div class="bodycontainergame" id="${game.id}">
             <div class="leftsidegameinfo">
                 <div class="gameheader">
                     <div class="nameandscore">
@@ -168,7 +168,7 @@ window.onload = function () {
        <img src="${gameImg}" alt="Avatar" style="width:100%">
 
        <div class="gametext">
-            <p class="gametitle"><b>${gameName}</b></p>
+            <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
              <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
        </div>
 
@@ -198,7 +198,7 @@ window.onload = function () {
             <img src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="gametext">
-                <p class="gametitle"><b>${gameName}</b></p>
+                <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
                 <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
 
             </div>
@@ -232,7 +232,7 @@ window.onload = function () {
             <img src="${gameImg}" alt="Avatar" style="width:100%">
      
             <div class="gametext">
-                 <p class="gametitle"><b>${gameName}</b></p>
+                 <p class="gametitle"><b id="${game.id}">${gameName}</b></p>
                   <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
             </div>
      
@@ -258,7 +258,7 @@ window.onload = function () {
             <img src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b>${gameName}</b></p>
+                <p class="allgametitle"><b id="${game.id}">${gameName}</b><i class="material-icons delete">bookmark_border</i></p>
                 <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
 
             </div>

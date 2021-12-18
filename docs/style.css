@@ -486,7 +486,7 @@ input[type=submit]:hover {
 }
 
 
-.gametext:hover {
+.gametext b:hover {
     transition: 0.5s linear ease-in-out;
     -webkit-transform: scale(1.01);
     -ms-transform: scale(1.01);
@@ -521,6 +521,12 @@ input[type=submit]:hover {
 .gametitle {
     font-size: 1.5em;
     padding-left: 10px;
+}
+
+
+.gametitle b:hover {
+    color: grey;
+    cursor: pointer;
 }
 
 .gamerelease {
@@ -579,7 +585,7 @@ input[type=submit]:hover {
     margin-right: 25px;
 }
 
-.allgamesection:hover {
+.allgamesection b:hover {
     transition: 0.5s linear ease-in-out;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
@@ -614,6 +620,11 @@ input[type=submit]:hover {
 .allgametitle {
     font-size: 1.3em;
     padding-left: 15px;
+}
+
+.allgametitle b:hover {
+    color: gray;
+    cursor: pointer;
 }
 
 .allgamerelease {
