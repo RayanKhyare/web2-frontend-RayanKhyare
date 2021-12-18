@@ -12,11 +12,7 @@
 
 body {
     font-family: 'Poppins', Arial, sans-serif;
-
-
     background-color: #161616;
-
-
 }
 
 /* width */
@@ -489,6 +485,15 @@ input[type=submit]:hover {
     margin-right: 25px;
 }
 
+
+.gametext:hover {
+    transition: 0.5s linear ease-in-out;
+    -webkit-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
+    z-index: 1;
+}
+
 .gamesection:last-child {
     margin-right: 0;
 }
@@ -572,6 +577,14 @@ input[type=submit]:hover {
     display: flex;
     flex-direction: column;
     margin-right: 25px;
+}
+
+.allgamesection:hover {
+    transition: 0.5s linear ease-in-out;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    z-index: 1;
 }
 
 .allgamesection:last-child {
