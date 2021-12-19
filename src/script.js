@@ -34,20 +34,20 @@ window.onload = function () {
         const buttons = document.getElementsByClassName("bookmark")
         let buttonsArray = Array.from(buttons);
 
-        console.log(buttonsArray);
+
 
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
                 let userId = '5';
-                console.log(userId);
+
                 let gameId = button.id;
-                console.log(gameId);
+
                 let gameImg = button.parentElement.parentElement.parentElement.firstElementChild.src;
-                console.log(gameImg);
+
                 let gameName = button.previousSibling.outerText;
-                console.log(gameName);
+
                 let gameRelease = button.parentElement.parentElement.lastElementChild.lastElementChild.lastElementChild.outerText;
-                console.log(gameRelease);
+
                 fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
                     method: 'POST',
                     headers: {
@@ -75,20 +75,20 @@ window.onload = function () {
         const buttons = document.getElementsByClassName("bookmark")
         let buttonsArray = Array.from(buttons);
 
-        console.log(buttonsArray);
+
 
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
                 let userId = '5';
-                console.log(userId);
+
                 let gameId = button.id;
-                console.log(gameId);
+
                 let gameImg = button.parentElement.parentElement.parentElement.firstElementChild.src;
-                console.log(gameImg);
+
                 let gameName = button.previousSibling.outerText;
-                console.log(gameName);
+
                 let gameRelease = button.parentElement.parentElement.lastElementChild.lastElementChild.lastElementChild.outerText;
-                console.log(gameRelease);
+
                 fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
                     method: 'POST',
                     headers: {
@@ -113,7 +113,7 @@ window.onload = function () {
         const buttons = document.getElementsByClassName("delete")
         let buttonsArray = [].slice.call(buttons);
 
-        console.log(buttonsArray);
+
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
 
@@ -127,7 +127,7 @@ window.onload = function () {
                         return response.json()
                     })
                     .then(data => {
-                        console.log('Challenge succesfully removed:', data);
+
                         alert("Game was successfully removed !")
                         setTimeout(window.location.reload(), 300)
 
@@ -162,7 +162,7 @@ window.onload = function () {
                     <img class="img" src="${data[i].gameImg}" alt="Avatar" style="width:100%">
 
                     <div class="allgametext">
-                        <p class="allgametitle "><b class="game">${data[i].gameName}</b><i class="material-icons delete" id="${data[i]._id}">delete</i></p>
+                        <p class="allgametitle "><b class="game">${data[i].gameName}</b><i class="material-icons delete game" id="${data[i]._id}">delete</i></p>
                         <p><b class="allgamerelease">Release date : ${data[i].gameRelease}</b></p>
 
                     </div>
@@ -178,7 +178,7 @@ window.onload = function () {
 
     function allSearchGame() {
         const searchGames = document.getElementById("searchinput")
-        console.log(searchGames)
+
 
         searchGames.addEventListener("keyup", async function (e) {
             e.preventDefault()
@@ -187,15 +187,14 @@ window.onload = function () {
             const searchValue = document.getElementById('searchinput').value
             const valueReformat = searchValue.replace(/ /g, "-").toLowerCase()
 
-            console.log(valueReformat)
+
 
             let fetchResponse = await fetch(`https://api.rawg.io/api/games?search=${valueReformat}&key=${apiKey}`);
 
             if (fetchResponse.ok) {
                 let data = await fetchResponse.json();
 
-                let gameResults = data.results
-                console.log(gameResults)
+
                 let htmlString = "";
                 gameResults.forEach(game => {
                     let gameName = game.name;
@@ -231,7 +230,7 @@ window.onload = function () {
 
     function bookmarkSearchGame() {
         const searchGames = document.getElementById("searchinput")
-        console.log(searchGames)
+
 
         searchGames.addEventListener("keyup", async function (e) {
             e.preventDefault()
@@ -240,7 +239,7 @@ window.onload = function () {
             const searchValue = document.getElementById('searchinput').value
             const valueReformat = searchValue.replace(/ /g, "-").toLowerCase()
 
-            console.log(valueReformat)
+
 
             let fetchResponse = await fetch(`https://api.rawg.io/api/games?search=${valueReformat}&key=${apiKey}`);
 
@@ -248,7 +247,7 @@ window.onload = function () {
                 let data = await fetchResponse.json();
 
                 let gameResults = data.results
-                console.log(gameResults)
+
                 let htmlString = "";
                 gameResults.forEach(game => {
                     let gameName = game.name;
@@ -262,7 +261,7 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p class="allgametitle" ><b class="title game">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
                 <p><b class="allgamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
@@ -286,102 +285,44 @@ window.onload = function () {
         const games = document.getElementsByClassName("game");
         let gamesArray = [].slice.call(games);
 
-        console.log("gamesArray")
-
         gamesArray.forEach(game => {
             game.addEventListener("click", function (e) {
                 e.preventDefault()
 
-                let gameId = game.id
+                let gameId = game.nextSibling.id;
+                console.log(gameId);
 
-                sessionStorage.setItem("id", gameId)
-
-                window.location.href = "./moreinfo.html"
-
-                let storagedGameId = sessionStorage.getItem("id")
-
-                const response = fetch(`https://api.rawg.io/api/games/${storagedGameId}?key=${apiKey}`);
-                const games = response.json();
-
-                games.then(game => {
-                    let gameResult = game.results
-
-                    gameResult.forEach(game => {
-                        let gameName = game.name;
-                        let gameImg = game.background_image;
-                        let gameMetacritic = game.metacritic;
-                        let gameRelease = game.released;
-
-                        let container = document.getElementById("bigcontainergame");
-                        let htmlString = "";
-
-                        htmlString += `   <div class="bodycontainergame">
-                        <div class="leftsidegameinfo">
-                            <div class="gameheader">
-                                <div class="nameandscore">
-                                    <h2 class="gamename">${gameName}</h2>
-                                    <h2 class="metascore">${gameMetacritic}</h2>
-                                </div>
-                                <h3 class="gamestudio">Test</h3>
-                            </div>
-                            <h2 class="about">About</h2>
-                            <p class="gameinfo">Test</p>
-                            <h2 class="releasedate_h2">Release date</h2>
-                            <h3 class="releasedate_h3">Test</h3>
-            
-                            <div class="release_platforms">
-                                <div class="releasedate_div">
-                                    <h2 class="releasedate_h2">Platforms</h2>
-                                    <h3 class="releasedate_h3">- Test</h3>
-                                    <h3 class="releasedate_h3">- Test</h3>
-                                </div>
-            
-                                <div class="platforms_div">
-                                    <h2 class="releasedate_h2">Genre</h2>
-                                    <h3 class="releasedate_h3">- Test</h3>
-                                    <h3 class="releasedate_h3">- Test</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rightsidegameinfo">
-                            <img src="Test" class="bigimggame" alt="Avatar">
-                        </div>
-                    </div>
-                    <h2 class="pictures_h2">More pictures :</h2>
-                    <div class="pictures_gameinfo">
-                        <img src="Test" alt="Avatar">
-                        <img src="Test" alt="Avatar">
-                        <img src="Test" alt="Avatar">
-                        <img src="Test" alt="Avatar">
-                        <img src="Test" alt="Avatar">
-                        <img src="Test" alt="Avatar">
-                    </div>`
-                        container.insertAdjacentHTML("beforeend", htmlString);
-                    });
-                })
+                window.location.href = `./gameinfo.html?id=${gameId}`
+                fetchMoreInfo()
             })
         })
     }
+    setTimeout(moreInfoPage, 1000);
 
-    async function fetchMoreInfo() {
-        const response = await fetch(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
-        const movies = await response.json();
-        return movies;
-    }
+    function fetchMoreInfo() {
 
-    fetchMoreInfo().then(game => {
-        let gameResult = game.results
+        // https://easyautotagging.com/javascript-get-url-parameter/
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const gameId = urlParams.get('id')
 
-        gameResult.forEach(game => {
-            let gameName = game.name;
-            let gameImg = game.background_image;
-            let gameMetacritic = game.metacritic;
-            let gameRelease = game.released;
+        console.log(gameId);
 
-            let container = document.getElementById("bigcontainergame");
-            let htmlString = "";
+        const response = fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`);
+        const games = response.json();
+        games.then(game => {
+            let gameResult = game.results
 
-            htmlString += `   <div class="bodycontainergame">
+            gameResult.forEach(game => {
+                let gameName = game.name;
+                let gameImg = game.background_image;
+                let gameMetacritic = game.metacritic;
+                let gameRelease = game.released;
+
+                let container = document.getElementById("bigcontainergame");
+                let htmlString = "";
+
+                htmlString += `   <div class="bodycontainergame">
             <div class="leftsidegameinfo">
                 <div class="gameheader">
                     <div class="nameandscore">
@@ -422,11 +363,14 @@ window.onload = function () {
             <img src="Test" alt="Avatar">
             <img src="Test" alt="Avatar">
         </div>`
-            container.insertAdjacentHTML("beforeend", htmlString);
-        });
-    })
+                container.innerHTML = htmlString;
+            });
+        })
+    }
 
-    moreInfoPage()
+
+
+
 
     async function fetchGotm() {
         const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&metacritic=75,100&dates=2021-11-01,2021-12-01`);
@@ -447,15 +391,15 @@ window.onload = function () {
             let container = document.getElementById("novembergotm");
             let htmlString = "";
 
-            htmlString += `   <div class="gamesection">
+            htmlString += `<div class="gamesection">
        <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
        <div class="gametext">
-            <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+            <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
              <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
        </div>
-
-    </div>`
+    </div>
+    `
             container.insertAdjacentHTML("beforeend", htmlString);
         });
     })
@@ -481,7 +425,7 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="gametext">
-                <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
                 <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
@@ -514,7 +458,7 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
      
             <div class="gametext">
-                 <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                 <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
                   <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
             </div>
      
@@ -542,7 +486,7 @@ window.onload = function () {
             <img class="img" id="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b class="title game" id="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p class="allgametitle"><b class="title game" id="title">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
                 <p><b class="allgamerelease" id="allgamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
