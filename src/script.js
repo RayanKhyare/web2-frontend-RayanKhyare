@@ -30,22 +30,24 @@ window.onload = function () {
     //     })
     // })
 
-    function postBookmarkedGame() {
-
-
+    function postAllBookmarkedGame() {
         const buttons = document.getElementsByClassName("bookmark")
         let buttonsArray = Array.from(buttons);
 
         console.log(buttonsArray);
 
-        let userId = 5;
-        let gameId = document.getElementsByClassName("title").id;
-        let gameImg = document.getElementsByClassName("img").src;
-        let gameName = document.getElementsByClassName("title").value;
-        let gameRelease = document.getElementsByClassName("allgamerelease");
-
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
+                let userId = '5';
+                console.log(userId);
+                let gameId = button.id;
+                console.log(gameId);
+                let gameImg = button.parentElement.parentElement.parentElement.firstElementChild.src;
+                console.log(gameImg);
+                let gameName = button.previousSibling.outerText;
+                console.log(gameName);
+                let gameRelease = button.parentElement.parentElement.lastElementChild.lastElementChild.lastElementChild.outerText;
+                console.log(gameRelease);
                 fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
                     method: 'POST',
                     headers: {
@@ -61,11 +63,83 @@ window.onload = function () {
                 }).then(data => {
                     return data.json()
                 })
+                alert('Game bookmarked !')
             })
         })
     }
 
-    setTimeout(postBookmarkedGame, 200)
+    setTimeout(postAllBookmarkedGame, 500)
+
+
+    function postSearchedBookmarkedGame() {
+        const buttons = document.getElementsByClassName("bookmark")
+        let buttonsArray = Array.from(buttons);
+
+        console.log(buttonsArray);
+
+        buttonsArray.forEach(button => {
+            button.addEventListener("click", function (e) {
+                let userId = '5';
+                console.log(userId);
+                let gameId = button.id;
+                console.log(gameId);
+                let gameImg = button.parentElement.parentElement.parentElement.firstElementChild.src;
+                console.log(gameImg);
+                let gameName = button.previousSibling.outerText;
+                console.log(gameName);
+                let gameRelease = button.parentElement.parentElement.lastElementChild.lastElementChild.lastElementChild.outerText;
+                console.log(gameRelease);
+                fetch('https://web2-courseproject-rayankhyare.herokuapp.com/games', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                        gameId: gameId,
+                        gameImg: gameImg,
+                        gameName: gameName,
+                        gameRelease: gameRelease
+                    })
+                }).then(data => {
+                    return data.json()
+                })
+                alert('Game bookmarked !')
+            })
+        })
+    }
+
+    function deleteBookmarkedGames() {
+        const buttons = document.getElementsByClassName("delete")
+        let buttonsArray = [].slice.call(buttons);
+
+        console.log(buttonsArray);
+
+        buttonsArray.forEach(button => {
+            button.addEventListener("click", function (e) {
+
+                fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/games/${button.id}`, {
+                        method: "DELETE",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(data => {
+                        console.log('Challenge succesfully removed:', data);
+                        alert("Game was successfully removed !")
+                    })
+
+
+            })
+        })
+
+    }
+
+    setTimeout(deleteBookmarkedGames, 500)
+
 
     function getBookmarkedGames() {
 
@@ -83,11 +157,11 @@ window.onload = function () {
 
                 for (let i = 0; i < data.length; i++) {
                     htmlString = `
-                    <div class="allgamesection" id="${data[i].gameId}">
+                    <div class="allgamesection">
                     <img class="img" src="${data[i].gameImg}" alt="Avatar" style="width:100%">
 
                     <div class="allgametext">
-                        <p class="allgametitle"><b>${data[i].gameName}</b></p>
+                        <p class="allgametitle"><b>${data[i].gameName}</b><i class="material-icons delete" id="${data[i]._id}">delete</i></p>
                         <p><b class="allgamerelease">Release date : ${data[i].gameRelease}</b></p>
 
                     </div>
@@ -98,6 +172,7 @@ window.onload = function () {
                 }
             })
     }
+
     getBookmarkedGames()
 
     function searchGame() {
@@ -133,19 +208,22 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b class="title" id="${game.id}">${gameName}</b></p>
-                <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
+                <p class="allgametitle"><b class="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p><b class="allgamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
 
         </div>`
                     container.innerHTML = htmlString
+
                     // container.insertAdjacentHTML("beforeend", htmlString);
                 })
             } else {
                 alert("error: " + response.status);
             }
+            setTimeout(postSearchedBookmarkedGame, 500)
         })
+
     }
 
     searchGame()
@@ -256,8 +334,8 @@ window.onload = function () {
        <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
        <div class="gametext">
-            <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
-             <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
+            <p class="gametitle"><b class="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+             <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
        </div>
 
     </div>`
@@ -286,8 +364,8 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="gametext">
-                <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
-                <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
+                <p class="gametitle"><b class="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
 
@@ -312,7 +390,6 @@ window.onload = function () {
             let gameMetacritic = game.metacritic;
             let gameRelease = game.released;
 
-
             let container = document.getElementById("allgames")
             let htmlString = ""
 
@@ -320,8 +397,8 @@ window.onload = function () {
             <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
      
             <div class="gametext">
-                 <p class="gametitle"><b class="title" id="${game.id}">${gameName}</b></p>
-                  <p><b class="gamerelease">Release date : ${gameRelease}</b></p>
+                 <p class="gametitle"><b class="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                  <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
             </div>
      
          </div>`
@@ -345,11 +422,11 @@ window.onload = function () {
             let htmlString = ""
 
             htmlString += `<div class="allgamesection">
-            <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
+            <img class="img" id="img" src="${gameImg}" alt="Avatar" style="width:100%">
 
             <div class="allgametext">
-                <p class="allgametitle"><b class="title" id="${game.id}">${gameName}</b><i class="material-icons bookmark">bookmark_border</i></p>
-                <p><b class="allgamerelease">Release date : ${gameRelease}</b></p>
+                <p class="allgametitle"><b class="title" id="title">${gameName}</b><i class="material-icons bookmark" id="${game.id}">bookmark_border</i></p>
+                <p><b class="allgamerelease" id="allgamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
 
             </div>
 
