@@ -20,6 +20,11 @@ body {
     cursor: pointer;
 }
 
+.account {
+    color: white;
+    font-size: 100px;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -587,6 +592,30 @@ input[type=submit]:hover {
 
 }
 
+.profilcontainer {
+    background-color: rgba(20, 20, 20, 0.74);
+    flex-wrap: wrap;
+    width: 100%;
+    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-top: 50px;
+    padding: 25px 50px;
+
+}
+
+.textprofil {
+    color: white;
+    padding-top: 25px;
+    font-size: 2em;
+}
+
+.firstnamestyle {
+    color: white;
+}
+
 .allgamesection {
     height: 400px;
     width: 370px;
@@ -595,7 +624,7 @@ input[type=submit]:hover {
     margin-right: 25px;
 }
 
-.allgamesection b:hover {
+.allgamesection:hover {
     transition: 0.5s linear ease-in-out;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
@@ -673,7 +702,7 @@ input[type=submit]:hover {
 
 .nameandscore {
     display: flex;
-    align-items: center;
+
 }
 
 .metascore {
@@ -747,10 +776,27 @@ input[type=submit]:hover {
 
 .rightsidegameinfo img {
 
-    width: 100%;
+    width: 650px;
     height: 500px;
     object-fit: cover;
-    margin-left: 25px;
+    margin-left: 80px;
+
 
     border-radius: 10px;
+}
+
+.deleteacc {
+    margin-top: 20px;
+    color: red;
+}
+
+.deleteaccbtn {
+    margin-top: 15px;
+    width: 170px;
+    height: 50px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-family: Poppins;
 }
