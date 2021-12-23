@@ -117,9 +117,10 @@ window.onload = function () {
         </div>`
                     container.innerHTML = htmlString;
                     // container.insertAdjacentHTML("beforeend", htmlString);
+                    postSearchedBookmarkedGame()
+                    moreInfoPageBookmark()
                 })
-                postSearchedBookmarkedGame()
-                moreInfoPageBookmark()
+
             } else {
                 alert("error: " + response.status);
             }
@@ -158,7 +159,7 @@ window.onload = function () {
                 }).then(data => {
                     return data.json()
                 })
-                alert('Game bookmarked !')
+                button.innerHTML = "bookmark";
             })
         })
     }

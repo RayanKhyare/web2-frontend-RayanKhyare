@@ -702,7 +702,8 @@ input[type=submit]:hover {
 
 .nameandscore {
     display: flex;
-
+    text-align: center;
+    align-items: center;
 }
 
 .metascore {
@@ -712,12 +713,14 @@ input[type=submit]:hover {
     padding: 5px 10px;
     background-color: green;
     border-radius: 5px;
+    text-align: center;
 }
 
 .gamename {
     color: white;
     font-size: 4em;
     font-weight: 900;
+
 }
 
 .gamestudio {
@@ -790,6 +793,11 @@ input[type=submit]:hover {
     color: red;
 }
 
+.logouttext {
+    margin-top: 20px;
+    color: gray;
+}
+
 .deleteaccbtn {
     margin-top: 15px;
     width: 170px;
@@ -802,7 +810,8 @@ input[type=submit]:hover {
 }
 
 .deleteaccsure {
-    margin-top: 30px;
+    margin-top: 15px;
+    margin-left: 30px;
     width: 170px;
     height: 50px;
     display: none;
@@ -827,10 +836,26 @@ input[type=submit]:hover {
     padding: 0px;
 }
 
+.divPasswordEdit {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+}
+
 .emailInput {
     display: flex;
     flex-direction: row;
     align-items: center;
+    display: none;
+}
+
+.passwordInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    display: none;
 }
 
 .emailInputForm {
@@ -844,4 +869,52 @@ input[type=submit]:hover {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.submitpasswordChange {
+    width: 80px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.passwordStructure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.updateacc {
+    cursor: pointer;
+
+}
+
+.updateacc:hover {
+    color: gray;
+
+}
+
+.updatepassword {
+    cursor: pointer;
+
+}
+
+.updatepassword:hover {
+    color: gray;
+
+}
+
+.discaccbtn {
+    margin-top: 15px;
+
+    width: 170px;
+    height: 50px;
+
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-family: Poppins;
 }
