@@ -28,4 +28,3 @@ async function register(
 export {
     register
 };
-

@@ -7,6 +7,7 @@ import {
 window.onload = function () {
 
     const apiKey = '0f742c4d7ba64f8f87a469a43cdc46aa';
+    setTimeout(loginFetch, 500)
 
     function postAllBookmarkedGame() {
         const buttons = document.getElementsByClassName("bookmark");
@@ -17,7 +18,7 @@ window.onload = function () {
 
                 console.log(button);
 
-                let userId = '5';
+                let userId = sessionStorage.getItem("userId");
 
                 let gameId = button.id;
 
@@ -56,7 +57,8 @@ window.onload = function () {
 
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
-                let userId = '5';
+                let userId = sessionStorage.getItem("userId");
+
 
                 let gameId = button.id;
 
@@ -122,18 +124,21 @@ window.onload = function () {
                 return response.json()
             })
             .then(data => {
-                for (let i = data.length - 1; i >= 0; i--) {
-                    htmlString = `
-                    <div class="allgamesection">
-                    <img class="img" src="${data[i].gameImg}" alt="Avatar" style="width:100%">
-
-                    <div class="allgametext">
-                        <p class="allgametitle "><b class="gameBookmarked" id="${data[i].gameId}">${data[i].gameName}</b><i class="material-icons delete game" id="${data[i]._id}">delete</i></p>
-                        <p><b class="allgamerelease">Release date : ${data[i].gameRelease}</b></p>
+               
+                if (data.userId == sessionStorage.getItem("userId")) {
+                    for (let i = data.length - 1; i >= 0; i--) {
+                        htmlString = `
+                        <div class="allgamesection">
+                        <img class="img" src="${data[i].gameImg}" alt="Avatar" style="width:100%">
+    
+                        <div class="allgametext">
+                            <p class="allgametitle "><b class="gameBookmarked" id="${data[i].gameId}">${data[i].gameName}</b><i class="material-icons delete game" id="${data[i]._id}">delete</i></p>
+                            <p><b class="allgamerelease">Release date : ${data[i].gameRelease}</b></p>
+                        </div>
                     </div>
-                </div>
-                   `
-                    container.insertAdjacentHTML("beforeend", htmlString)
+                       `
+                        container.insertAdjacentHTML("beforeend", htmlString)
+                    }
                 }
             })
     }
@@ -315,6 +320,7 @@ window.onload = function () {
                 gameGenres.push(` ${genresArray.name}`)
             })
 
+
             let container = document.getElementById("bigcontainergame");
             let htmlString = "";
 
@@ -361,7 +367,8 @@ window.onload = function () {
             <img src="Test" alt="Avatar">
             <img src="Test" alt="Avatar">
             <img src="Test" alt="Avatar">
-        </div>`
+        </div>
+        `
             container.innerHTML = htmlString;
 
         })
@@ -515,30 +522,46 @@ window.onload = function () {
     //     window.location.href = "./signin.html"
     // })
 
-    document.getElementById("signInForm").addEventListener("submit", e => {
-        fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/login`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                if (data) {
-                    sessionStorage.setItem("userId", data._id);
+    console.log(document.getElementById("signInForm"))
 
-                    window.location.href = "./index.html";
-                } else {
-                    console.log('Wrong password or email!');
-                }
-            })
-    })
+    function loginFetch() {
+        document.getElementById("signInForm").addEventListener("submit", e => {
+            e.preventDefault()
+
+            const firstNameValue = document.getElementById("signInForm").firstElementChild.firstElementChild.nextSibling.nextSibling.value
+            console.log(firstNameValue)
+            const passwordValue = document.getElementById("signInForm").firstElementChild.nextSibling.nextSibling.firstElementChild.nextSibling.nextSibling.value
+            console.log(passwordValue)
+
+            console.log(document.getElementById("loginerror"))
+
+            fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/users/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: firstNameValue,
+                        password: passwordValue
+                    })
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data);
+
+                    if (data) {
+                        sessionStorage.setItem("userId", data._id);
+
+                        window.location.href = "./homepage.html";
+                    } else {
+                        document.getElementById("loginerror").style.display = 'block';
+                    }
+
+                })
+
+        })
+    }
 
 }

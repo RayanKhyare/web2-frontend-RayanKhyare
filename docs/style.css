@@ -800,3 +800,9 @@ input[type=submit]:hover {
     border: none;
     font-family: Poppins;
 }
+
+.loginerror {
+    color: red;
+    padding-top: 20px;
+    display: none;
+}
