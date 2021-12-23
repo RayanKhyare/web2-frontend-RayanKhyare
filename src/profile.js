@@ -13,7 +13,7 @@ window.onload = function () {
                 return response.json()
             })
             .then(data => {
-                console.log(data);
+           
                 let container = document.getElementById('profilcontainer');
                 let htmlString = "";
                 let dataId = data._id
@@ -66,18 +66,18 @@ window.onload = function () {
     function updateUserEmail(userFirstName, userLastName, userPassword) {
 
         document.getElementById("emailChangeForm").addEventListener('submit', e => {
-            console.log(e.target.email);
+          
             e.preventDefault()
             let userId = sessionStorage.getItem("userId");
 
             let firstNameValue = userFirstName
-            console.log(firstNameValue);
+           
             let secondNameValue = userLastName
-            console.log(secondNameValue);
+           
             let emailValue = e.target.email.value
-            console.log(emailValue);
+            
             let passwordValue = userPassword
-            console.log(emailValue);
+            
 
             const accUpdate = {
                 "firstname": firstNameValue,
@@ -95,7 +95,7 @@ window.onload = function () {
                     res.json()
                 })
                 .then(data => {
-                    console.log(data);
+                
                     if (data == undefined) {
                         location.reload();
                     }
@@ -107,18 +107,18 @@ window.onload = function () {
     function updateUserPassword(userFirstName, userLastName, userEmail) {
 
         document.getElementById("passwordChangeForm").addEventListener('submit', e => {
-            console.log(e.target.password);
+            
             e.preventDefault()
             let userId = sessionStorage.getItem("userId");
 
             let firstNameValue = userFirstName
-            console.log(firstNameValue);
+           
             let secondNameValue = userLastName
-            console.log(secondNameValue);
+          
             let emailValue = userEmail
-            console.log(emailValue);
+            
             let passwordValue = e.target.password.value
-            console.log(emailValue);
+         
 
             const accUpdate = {
                 "firstname": firstNameValue,
@@ -136,7 +136,7 @@ window.onload = function () {
                     res.json()
                 })
                 .then(data => {
-                    console.log(data);
+                  
                     if (data == undefined) {
                         location.reload();
                     }
@@ -148,13 +148,13 @@ window.onload = function () {
 
 
     document.getElementById("deleteaccbtn").addEventListener("click", function (e) {
-        console.log("lets gooo");
+       
         document.getElementById("deleteaccsure").style.display = "block";
     })
 
     function deleteAcc() {
         document.getElementById("deleteaccsure").addEventListener("click", function (e) {
-            console.log("lets gooo");
+         
             let userId = sessionStorage.getItem("userId");
 
             fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/users/${userId}`, {

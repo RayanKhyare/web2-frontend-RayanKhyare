@@ -36,14 +36,14 @@ window.onload = function () {
     function moreInfoPage() {
         const games = document.getElementsByClassName("game");
         let gamesArray = [].slice.call(games);
-        console.log(gamesArray)
+
         gamesArray.forEach(game => {
             game.addEventListener("click", function (e) {
                 setTimeout(500)
                 e.preventDefault();
 
                 let gameId = game.nextSibling.id;
-                console.log(gameId)
+
 
                 //https://www.w3schools.com/js/js_window_location.asp
                 window.location.href = `./gameinfo.html?id=${gameId}`;
@@ -54,7 +54,7 @@ window.onload = function () {
     function postAllBookmarkedGame() {
         const buttons = document.getElementsByClassName("bookmark");
         let buttonsArray = Array.from(buttons);
-        console.log(buttonsArray)
+
         buttonsArray.forEach(button => {
             button.addEventListener("click", function (e) {
 
@@ -106,7 +106,6 @@ window.onload = function () {
                 let data = await fetchResponse.json();
 
                 let gameResults = data.results
-                console.log(gameResults)
 
                 let htmlString = "";
                 gameResults.forEach(game => {

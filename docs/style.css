@@ -592,6 +592,22 @@ input[type=submit]:hover {
 
 }
 
+.allgamescontainerBookmark {
+    background-color: rgba(20, 20, 20, 0.74);
+    flex-wrap: wrap;
+    width: 100%;
+    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    margin-top: 50px;
+    padding: 25px 50px;
+
+
+}
+
+
 .profilcontainer {
     background-color: rgba(20, 20, 20, 0.74);
     flex-wrap: wrap;

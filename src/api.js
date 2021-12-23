@@ -1,6 +1,6 @@
 "use strict";
 
-const apiKey = '1f10bd3195bf40e7b89a3c607aefcdef'
+const apiKey = '0f742c4d7ba64f8f87a469a43cdc46aa'
 
 async function register(
     firstname,
@@ -8,7 +8,7 @@ async function register(
     email,
     password
 ) {
-    console.log(firstname);
+
     const response = await fetch('https://web2-courseproject-rayankhyare.herokuapp.com/users', {
         method: 'POST',
         headers: {
@@ -21,7 +21,7 @@ async function register(
             password
         })
     })
-    console.log(response)
+
     return response
 }
 
@@ -52,6 +52,6 @@ async function fetchAllGames() {
 export {
     register,
     login,
-    fetchAllGames,
-    apiKey
+    apiKey,
+    fetchAllGames
 };

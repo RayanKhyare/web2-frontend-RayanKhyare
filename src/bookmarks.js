@@ -62,7 +62,7 @@ window.onload = function () {
 
     function moreInfoPageBookmark() {
         const games = document.getElementsByClassName("gameBookmarked");
-        console.log(games);
+
         let gamesArray = [].slice.call(games);
 
         gamesArray.forEach(game => {
@@ -77,6 +77,24 @@ window.onload = function () {
 
     }
 
+    function moreInfoPageBookmarkSearch() {
+        const games = document.getElementsByClassName("game");
+
+        let gamesArray = [].slice.call(games);
+
+        gamesArray.forEach(game => {
+            game.addEventListener("click", function (e) {
+                setTimeout(500)
+                e.preventDefault();
+
+                let gameId = game.nextSibling.id;
+                window.location.href = `./gameinfo.html?id=${gameId}`;
+            })
+        })
+
+    }
+
+
     function bookmarkSearchGame() {
         const searchGames = document.getElementById("searchinput")
 
@@ -90,7 +108,7 @@ window.onload = function () {
 
 
             let fetchResponse = await fetch(`https://api.rawg.io/api/games?search=${valueLowerCase}&key=${apiKey}`);
-            console.log(fetchResponse.ok);
+
             if (fetchResponse.ok) {
                 let data = await fetchResponse.json();
 
@@ -116,10 +134,10 @@ window.onload = function () {
 
         </div>`
                     container.innerHTML = htmlString;
+                    moreInfoPageBookmarkSearch()
                     postSearchedBookmarkedGame()
-                    moreInfoPageBookmark()
-                })
 
+                })
             } else {
                 alert("error: " + response.status);
             }
@@ -162,6 +180,4 @@ window.onload = function () {
             })
         })
     }
-
-
 }

@@ -12,14 +12,12 @@ window.onload = function () {
         const urlParams = new URLSearchParams(queryString);
         const gameId = urlParams.get('id');
 
-        console.log(gameId);
+      
 
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
         const games = response.json()
 
         games.then(game => {
-
-            console.log(game);
 
             let gameId = game.id
             let gameName = game.name;
@@ -48,7 +46,7 @@ window.onload = function () {
                         gameScreens.push(data.image)
 
                     })
-                    console.log(gameScreens[0]);
+                 
 
                     let container = document.getElementById("bigcontainergame");
                     let htmlString = "";
