@@ -785,7 +785,7 @@ input[type=submit]:hover {
     border-radius: 10px;
 }
 
-.deleteacc {
+.deleteacctext {
     margin-top: 20px;
     color: red;
 }
@@ -801,8 +801,47 @@ input[type=submit]:hover {
     font-family: Poppins;
 }
 
+.deleteaccsure {
+    margin-top: 30px;
+    width: 170px;
+    height: 50px;
+    display: none;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-family: Poppins;
+}
+
 .loginerror {
     color: red;
     padding-top: 20px;
     display: none;
+}
+
+.divEmailEdit {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+}
+
+.emailInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.emailInputForm {
+    width: 170px;
+    height: 50px;
+}
+
+.submitEmailChange {
+    width: 80px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
