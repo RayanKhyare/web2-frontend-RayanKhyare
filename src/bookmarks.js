@@ -116,7 +116,6 @@ window.onload = function () {
 
         </div>`
                     container.innerHTML = htmlString;
-                    // container.insertAdjacentHTML("beforeend", htmlString);
                     postSearchedBookmarkedGame()
                     moreInfoPageBookmark()
                 })

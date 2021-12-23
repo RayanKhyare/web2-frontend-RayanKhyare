@@ -864,19 +864,35 @@ input[type=submit]:hover {
 }
 
 .submitEmailChange {
-    width: 80px;
-    height: 50px;
+    width: 150px;
+    height: 60px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
+    font-size: 0.9em;
+    font-family: Poppins;
+    background-color: rgb(63, 63, 63)
+}
+
+.emailChangeForm {
+    width: 300px
+}
+
+.passwordChangeForm {
+    width: 300px
 }
 
 .submitpasswordChange {
-    width: 80px;
-    height: 50px;
+    width: 150px;
+    height: 60px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
+    font-size: 0.9em;
+    font-family: Poppins;
+    background-color: rgb(63, 63, 63)
 }
 
 .passwordStructure {

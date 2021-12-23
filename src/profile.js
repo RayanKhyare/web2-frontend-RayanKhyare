@@ -35,7 +35,7 @@ window.onload = function () {
             <div class="emailInput" id="emailInput">
 
             <form class="emailChangeForm" id="emailChangeForm">
-            <input type="text" class="emailInputForm" id="emailInputForm" name="email">
+            <input type="text" class="emailInputForm" id="emailInputForm" name="email" placeholder="New email">
             <button type="submit" class="submitEmailChange" id="submitEmailChange">Change email</button>
 
             </form>
@@ -47,20 +47,18 @@ window.onload = function () {
 
             <div class="passwordInput" id="passwordInput">
             <form class="passwordChangeForm" id="passwordChangeForm">
-            <input type="text" class="passwordInputForm" id="passwordInputForm" name="password">
+            <input type="text" class="passwordInputForm" id="passwordInputForm" name="password" placeholder="New password">
             <button type="submit" class="submitpasswordChange" id="submitpasswordChange">Change password</button>
 
             </form>
             </div>
-
-           
             `
-
                 container.insertAdjacentHTML("afterbegin", htmlString);
                 updateUserEmail(userFirstName, userLastName, userPassword)
                 updateUserPassword(userFirstName, userLastName, userEmail)
                 showEditEmailBtn()
                 showEditPasswordBtn()
+                deleteAcc()
             })
 
     }
@@ -154,24 +152,26 @@ window.onload = function () {
         document.getElementById("deleteaccsure").style.display = "block";
     })
 
+    function deleteAcc() {
+        document.getElementById("deleteaccsure").addEventListener("click", function (e) {
+            console.log("lets gooo");
+            let userId = sessionStorage.getItem("userId");
 
-    document.getElementById("deleteaccsure").addEventListener("click", function (e) {
-        console.log("lets gooo");
+            fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/users/${userId}`, {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    window.location.href = "./../index.html"
+                })
 
-        fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/users/${d}`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setTimeout(window.location.reload(), 100)
-            })
-        window.location.href = "./index.html"
-    })
+        })
+    }
 
     document.getElementById("discaccbtn").addEventListener("click", function (e) {
         sessionStorage.removeItem("userId")
