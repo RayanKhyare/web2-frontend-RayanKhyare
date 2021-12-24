@@ -5,14 +5,13 @@ import {
 
 window.onload = function () {
     fetchMoreInfo()
-    async function fetchMoreInfo() {
 
+    // Fetch all data of a game in more info page
+    async function fetchMoreInfo() {
         // https://easyautotagging.com/javascript-get-url-parameter/
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const gameId = urlParams.get('id');
-
-      
 
         const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
         const games = response.json()
@@ -44,10 +43,8 @@ window.onload = function () {
                 .then(data => {
                     data.results.forEach(data => {
                         gameScreens.push(data.image)
-
                     })
-                 
-
+                    
                     let container = document.getElementById("bigcontainergame");
                     let htmlString = "";
 
@@ -92,7 +89,6 @@ window.onload = function () {
                 `<img src="${screen}" alt="Avatar"></img>`
             ))
         }
-        
             </div>
         `
                     container.innerHTML = htmlString;

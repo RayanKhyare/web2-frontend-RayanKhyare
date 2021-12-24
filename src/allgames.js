@@ -6,6 +6,7 @@ import {
 window.onload = function () {
     allSearchGame()
 
+    //Fetch games on all games page
     fetchAllGames().then(game => {
         let gameResult = game.results
 
@@ -27,12 +28,14 @@ window.onload = function () {
             </div>
 
         </div>`
+
             container.insertAdjacentHTML("beforeend", htmlString);
         });
         moreInfoPage()
         postAllBookmarkedGame()
     })
 
+    //Redirect to more info of a game when clicking on game
     function moreInfoPage() {
         const games = document.getElementsByClassName("game");
         let gamesArray = [].slice.call(games);
@@ -51,6 +54,7 @@ window.onload = function () {
         })
     }
 
+    // Send a game in all games
     function postAllBookmarkedGame() {
         const buttons = document.getElementsByClassName("bookmark");
         let buttonsArray = Array.from(buttons);
@@ -88,6 +92,7 @@ window.onload = function () {
         })
     }
 
+    // Search for games in all games page
     function allSearchGame() {
         const searchGames = document.getElementById("searchinput")
 

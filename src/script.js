@@ -9,7 +9,7 @@ import {
 
 window.onload = function () {
 
-
+    // Fetch games of the month
     async function fetchGotm() {
         const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&metacritic=75,100&dates=2021-11-01,2021-12-01`);
         const movies = await response.json();
@@ -17,7 +17,6 @@ window.onload = function () {
     }
 
     fetchGotm().then(game => {
-
         let gameResult = game.results;
 
         gameResult.forEach(game => {
@@ -30,7 +29,6 @@ window.onload = function () {
 
             htmlString += `<div class="gamesection">
        <img class="img" src="${gameImg}" alt="Avatar" style="width:100%">
-
        <div class="gametext">
             <p class="gametitle"><b class="title game">${gameName}</b><i class="material-icons bookmark game" id="${game.id}">bookmark_border</i></p>
              <p><b class="gamerelease">Release date : <b class="allgamereleasedate" id="allgamereleasedate">${gameRelease}</b></b></p>
@@ -41,9 +39,9 @@ window.onload = function () {
         });
         postGames()
         moreInfoPage()
-
     })
 
+    // Fetch the most popular games
     async function fetchPopular() {
         const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&dates=2021-01-01,2021-12-31&ordering=-added`);
         const movies = await response.json();
@@ -74,10 +72,9 @@ window.onload = function () {
         });
         postGames()
         moreInfoPage()
-
     })
 
-
+    // Fetch last added games
     async function fetchAllGames() {
         const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&ordering=added`);
         const games = await response.json();
@@ -111,6 +108,7 @@ window.onload = function () {
         moreInfoPage()
     })
 
+    // Post games bookmarked in homepage
     function postGames() {
 
         const buttons = document.getElementsByClassName("bookmark");
@@ -142,11 +140,9 @@ window.onload = function () {
                 button.innerHTML = "bookmark";
             })
         })
-
     }
 
-
-
+    // Search for games in homepage and shows them
     function allSearchGame() {
         const searchGames = document.getElementById("searchinput")
 
@@ -163,10 +159,10 @@ window.onload = function () {
 
             if (fetchResponse.ok) {
                 let data = await fetchResponse.json();
-
                 let gameResults = data.results
 
                 let htmlString = "";
+
                 gameResults.forEach(game => {
                     let gameName = game.name;
                     let gameImg = game.background_image;
@@ -187,19 +183,15 @@ window.onload = function () {
                 })
                 postGames()
                 moreInfoPage()
-
-
             } else {
                 alert("error: " + response.status);
             }
         })
-
     }
-
 
     allSearchGame()
 
-
+    // Shows the more info page of a game clicked in homepage
     function moreInfoPage() {
         const games = document.getElementsByClassName("game");
 

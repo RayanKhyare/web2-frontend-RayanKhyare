@@ -3,6 +3,8 @@ import {
 } from './api.js'
 
 window.onload = function () {
+
+    //Made the register post
     document.getElementById("signupForm").addEventListener("submit", async (e) => {
         e.preventDefault();
 

@@ -2,7 +2,7 @@ window.onload = function () {
 
     getUserData()
 
-
+    // Get all data of user in profil page
     function getUserData() {
         let userId = sessionStorage.getItem("userId");
 
@@ -13,7 +13,7 @@ window.onload = function () {
                 return response.json()
             })
             .then(data => {
-           
+
                 let container = document.getElementById('profilcontainer');
                 let htmlString = "";
                 let dataId = data._id
@@ -63,21 +63,17 @@ window.onload = function () {
 
     }
 
+    // Update email of user in profil page
     function updateUserEmail(userFirstName, userLastName, userPassword) {
 
         document.getElementById("emailChangeForm").addEventListener('submit', e => {
-          
             e.preventDefault()
-            let userId = sessionStorage.getItem("userId");
 
+            let userId = sessionStorage.getItem("userId");
             let firstNameValue = userFirstName
-           
             let secondNameValue = userLastName
-           
             let emailValue = e.target.email.value
-            
             let passwordValue = userPassword
-            
 
             const accUpdate = {
                 "firstname": firstNameValue,
@@ -95,30 +91,25 @@ window.onload = function () {
                     res.json()
                 })
                 .then(data => {
-                
+
                     if (data == undefined) {
                         location.reload();
                     }
                 });
         })
-
     }
 
+    // Update password of a user in profil page
     function updateUserPassword(userFirstName, userLastName, userEmail) {
 
         document.getElementById("passwordChangeForm").addEventListener('submit', e => {
-            
             e.preventDefault()
-            let userId = sessionStorage.getItem("userId");
 
+            let userId = sessionStorage.getItem("userId");
             let firstNameValue = userFirstName
-           
             let secondNameValue = userLastName
-          
             let emailValue = userEmail
-            
             let passwordValue = e.target.password.value
-         
 
             const accUpdate = {
                 "firstname": firstNameValue,
@@ -136,25 +127,23 @@ window.onload = function () {
                     res.json()
                 })
                 .then(data => {
-                  
+
                     if (data == undefined) {
                         location.reload();
                     }
                 });
         })
-
     }
 
 
-
+    // First delete account button triggers the display of the second
     document.getElementById("deleteaccbtn").addEventListener("click", function (e) {
-       
         document.getElementById("deleteaccsure").style.display = "block";
     })
 
+    // Deletes the user account
     function deleteAcc() {
         document.getElementById("deleteaccsure").addEventListener("click", function (e) {
-         
             let userId = sessionStorage.getItem("userId");
 
             fetch(`https://web2-courseproject-rayankhyare.herokuapp.com/users/${userId}`, {
@@ -169,15 +158,16 @@ window.onload = function () {
                 .then(data => {
                     window.location.href = "./../index.html"
                 })
-
         })
     }
 
+    // Delete userId in sessionStorage and redirect to beginning
     document.getElementById("discaccbtn").addEventListener("click", function (e) {
         sessionStorage.removeItem("userId")
         window.location.href = "./../index.html"
     })
 
+    // Show the email update form
     function showEditEmailBtn() {
         document.getElementById("updateacc").addEventListener("click", function (e) {
 
@@ -185,6 +175,7 @@ window.onload = function () {
         })
     }
 
+    // Show the password update form
     function showEditPasswordBtn() {
         document.getElementById("updatepassword").addEventListener("click", function (e) {
 

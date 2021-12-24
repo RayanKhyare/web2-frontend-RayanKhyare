@@ -5,11 +5,11 @@ import {
 window.onload = function () {
 
     loginFetch()
-
+    // Made the login fetch
     function loginFetch() {
         document.getElementById("signInForm").addEventListener("submit", async e => {
             e.preventDefault()
-         
+
             const emailValue = e.target.email.value
             const passwordValue = e.target.password.value
 
@@ -20,8 +20,6 @@ window.onload = function () {
             const loginFetchThen = loginFetch.json()
 
             loginFetchThen.then(data => {
-              
-
                 if (data) {
                     sessionStorage.setItem("userId", data._id);
 

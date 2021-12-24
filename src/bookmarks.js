@@ -6,6 +6,7 @@ window.onload = function () {
     getBookmarkedGames()
     bookmarkSearchGame()
 
+    // Delete a bookmarked game
     function deleteBookmarkedGames() {
         const buttons = document.getElementsByClassName("delete");
         let buttonsArray = [].slice.call(buttons);
@@ -29,6 +30,7 @@ window.onload = function () {
         })
     }
 
+    // Get all the bookmarked games of a user
     function getBookmarkedGames() {
         let container = document.getElementById("bookmarkedcontainer");
         let htmlString = ""
@@ -60,6 +62,7 @@ window.onload = function () {
             })
     }
 
+    // Redirect to a more info page of a game in the bookmark page
     function moreInfoPageBookmark() {
         const games = document.getElementsByClassName("gameBookmarked");
 
@@ -77,6 +80,7 @@ window.onload = function () {
 
     }
 
+    // Redirect to a more info page while searching for a game in bookmark page
     function moreInfoPageBookmarkSearch() {
         const games = document.getElementsByClassName("game");
 
@@ -94,7 +98,7 @@ window.onload = function () {
 
     }
 
-
+    // Search games in bookmark games
     function bookmarkSearchGame() {
         const searchGames = document.getElementById("searchinput")
 
@@ -145,6 +149,8 @@ window.onload = function () {
 
     }
 
+
+    // Bookmark a game that was searched in bookmark page
     function postSearchedBookmarkedGame() {
         const buttons = document.getElementsByClassName("bookmark");
         let buttonsArray = Array.from(buttons);

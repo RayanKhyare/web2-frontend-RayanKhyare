@@ -2,6 +2,7 @@
 
 const apiKey = '0f742c4d7ba64f8f87a469a43cdc46aa'
 
+// Made module for register
 async function register(
     firstname,
     lastname,
@@ -25,6 +26,7 @@ async function register(
     return response
 }
 
+// Made module for login
 async function login(
     email,
     password
