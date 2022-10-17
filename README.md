@@ -1,8 +1,6 @@
 
 # Course projet WEB2 Rayan Khyare 
 
-- Made this readme with : https://readme.so/
-
 
 ## Description
 
